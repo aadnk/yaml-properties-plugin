@@ -4,18 +4,29 @@
 
   <groupId>com.comphenix.maven</groupId>
   <artifactId>yaml-properties-plugin</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0</version>
   <packaging>maven-plugin</packaging>
 
   <name>yaml-properties-plugin Maven Plugin</name>
-
-  <!-- FIXME change it to the project's website -->
   <url>http://comphenix.net/yaml-properties-plugin</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.api.version>3.0-alpha-2</maven.api.version>
   </properties>
+  
+  <distributionManagement>
+    <repository>
+      <id>comphenix-releases</id>
+      <name>Comphenix Maven Releases</name>
+      <url>http://repo.comphenix.net/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>comphenix-snapshots</id>
+      <name>Comphenix Maven Snapshots</name>
+      <url>http://repo.comphenix.net/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
@@ -90,4 +101,75 @@
     </plugins>
   </build>
  
+  <profiles>
+  <profile>
+    <id>release-sign-artifacts</id>
+    <activation>
+      <property>
+        <name>performRelease</name>
+        <value>true</value>
+      </property>
+    </activation>
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.2</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.4</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        
+      </plugins>
+    </build>
+  </profile>
+  </profiles>
+  
+  <scm>
+    <connection>scm:git:https://github.com/aadnk/yaml-properties-plugin.git</connection>
+    <url>https://github.com/aadnk/yaml-properties-plugin</url>
+  </scm>
+  
+  <licenses>
+    <license>
+      <name>GNU GENERAL PUBLIC LICENSE - Version 2, June 1991</name>
+      <url>http://www.gnu.org/licenses/gpl-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <developers>
+    <developer>
+      <id>aadnk</id>
+      <name>Kristian S. Stangeland</name>
+      <email>kr_stang@hotmail.com</email>
+      <url>http://comphenix.net/</url>
+      <roles>
+        <role>developer</role>
+        <role>maintainer</role>
+      </roles>
+      <timezone>1</timezone>
+    </developer>
+  </developers>
 </project>

@@ -19,7 +19,7 @@ Then reference the plugin itself:
     <plugin>
       <groupId>com.comphenix.maven</groupId>
 	  <artifactId>yaml-properties-plugin</artifactId>
-	  <version>0.0.1-SNAPSHOT</version>
+	  <version>0.1.0</version>
 	  <executions>
 	    <execution>
 		  <goals>

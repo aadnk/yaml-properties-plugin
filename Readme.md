@@ -4,13 +4,13 @@ Yaml-Properties-Plugin
 This Maven plugin allows you to reference YAML key-value pairs through Maven properties. To use it,
 add the following repository to your pom:
 ```xml
-<repositories>
-  <repository>
+<pluginRepositories>
+  <pluginRepository>
     <id>comphenix-rep</id>
     <name>Comphenix Maven Releases</name>
     <url>http://repo.comphenix.net/content/groups/public</url>
-  </repository>
-</repositories>
+  </pluginRepository>
+</pluginRepositories>
 ```
 Then reference the plugin itself:
 ```xml
